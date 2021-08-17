@@ -27,26 +27,27 @@ export const reverseSort = (nums) => {
   return reverse;
 };
 
+
 export const quickSort = (array, isDesc = false) => {
   if (array.length < 2) {
     return array;
   }
-  const pivot = [array[0]];
+  const pivot = array[0];
   const small = [];
   const big = [];
   for (let i = 1; i < array.length; i++) {
-    if (array[i] < pivot) {
+    if (array[i] <= pivot) {
       small.push(array[i]);
-    } else if (array[i] > pivot) {
-      big.push(array[i]);
     } else {
-      pivot.push(array[i]);
+      big.push(array[i]);
     }
   }
   console.log(`small: ${small}, pivot: ${pivot}, big: ${big}`);
   if (isDesc) return quickSort(big, true).concat(pivot, quickSort(small, true));
   return quickSort(small).concat(pivot, quickSort(big));
 };
+
+
 
 const toNumber = (input) => {
   return Number(input);
@@ -64,4 +65,11 @@ export const convertStringToNumberArray = (string) => {
     .filter(filterNaN);
 
   return convertedArray;
+};
+
+export const checkExecutionTime = (cb) => {
+  const start = performance.now();
+  const result = cb();
+  const end = performance.now();
+  return [result, end - start];
 };

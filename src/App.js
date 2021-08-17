@@ -3,22 +3,31 @@ import styled from "styled-components";
 import { LocaleDateTimer } from "components/Timer";
 import { Button } from "components/Button";
 import { InputField, ResultField } from "components/Field";
-import { quickSort, convertStringToNumberArray } from "utils/common";
+import { quickSort, convertStringToNumberArray, checkExecutionTime } from "utils/common";
 import { DESC_RENDER_TIMEOUT } from "utils/constants";
 
 export default function App() {
   const [input, setInput] = useState("");
-  const [asceResult, setAsceResult] = useState("");
-  const [descResult, setDescResult] = useState("");
+  const [asceResult, setAsceResult] = useState({ text: "", excutionTime: null });
+  const [descResult, setDescResult] = useState({ text: "", excutionTime: null });
 
   const startSort = () => {
     const numberArray = convertStringToNumberArray(input);
-    const asceSortedArray = quickSort(numberArray).join(", ");
-    const descSortedArray = quickSort(numberArray, true).join(", ");
-    setAsceResult(asceSortedArray);
-
+    const [asceSortedText, asceSortTime] = checkExecutionTime(() =>
+      quickSort(numberArray).join(", ")
+    );
+    const [descSortedText, descSortTime] = checkExecutionTime(() =>
+      quickSort(numberArray, true).join(", ")
+    );
+    setAsceResult({
+      text: asceSortedText,
+      excutionTime: asceSortTime,
+    });
     setTimeout(() => {
-      setDescResult(descSortedArray);
+      setDescResult({
+        text: descSortedText,
+        excutionTime: descSortTime,
+      });
     }, DESC_RENDER_TIMEOUT);
   };
 
@@ -33,8 +42,16 @@ export default function App() {
       <Wrapper>
         <Button onClick={startSort}>sort</Button>
       </Wrapper>
-      <ResultField fieldName='오름차순' value={asceResult} />
-      <ResultField fieldName='내림차순' value={descResult} />
+      <ResultField
+        fieldName='오름차순'
+        value={asceResult.text}
+        excutionTime={asceResult.excutionTime}
+      />
+      <ResultField
+        fieldName='내림차순'
+        value={descResult.text}
+        excutionTime={descResult.excutionTime}
+      />
       <LocaleDateTimer locales='en-US' />
     </Container>
   );
