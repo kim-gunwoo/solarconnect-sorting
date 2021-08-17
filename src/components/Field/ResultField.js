@@ -4,7 +4,7 @@ const ResultField = ({ fieldName, value }) => {
   return (
     <Container>
       <FieldHeader>{fieldName}</FieldHeader>
-      <TextArea value={value} contentEditable='false' />
+      <TextArea value={value} readOnly />
     </Container>
   );
 };

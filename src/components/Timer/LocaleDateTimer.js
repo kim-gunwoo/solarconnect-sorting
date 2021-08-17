@@ -25,4 +25,9 @@ export default function LocaleDateTimer({ locales = "ko-KR" }) {
   return <Container>{getLocalDateCurrentTime()}</Container>;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 20px;
+  background-color: #f2f4f5;
+  text-align: center;
+  font-size: 20px;
+`;
