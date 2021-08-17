@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import LocaleDateTimer from "components/LocaleDateTimer";
+import { LocaleDateTimer } from "components/Timer";
 import { InputField, ResultField } from "components/Field";
 import { quickSort } from "utils/common";
 
@@ -40,7 +40,7 @@ function App() {
     <div className='App'>
       <LocaleDateTimer />
       <InputField fieldName='입력' value={input} onChange={inputFieldChange} />
-      <button onClick={()=>startSort(input)}>sort</button>
+      <button onClick={() => startSort(input)}>sort</button>
       <ResultField fieldName='오름차순' value={asceResult} />
       <ResultField fieldName='내림차순' value={descResult} />
       <LocaleDateTimer locales='en-US' />
