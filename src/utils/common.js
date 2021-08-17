@@ -47,3 +47,21 @@ export const quickSort = (array, isDesc = false) => {
   if (isDesc) return quickSort(big, true).concat(pivot, quickSort(small, true));
   return quickSort(small).concat(pivot, quickSort(big));
 };
+
+const toNumber = (input) => {
+  return Number(input);
+};
+
+const filterNaN = (item) => {
+  return !isNaN(item);
+};
+
+export const convertStringToNumberArray = (string) => {
+  const convertedArray = string
+    .split(",")
+    .filter((e) => e !== "")
+    .map(toNumber)
+    .filter(filterNaN);
+
+  return convertedArray;
+};

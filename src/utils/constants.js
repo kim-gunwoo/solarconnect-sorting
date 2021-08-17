@@ -1,0 +1,1 @@
+export const DESC_RENDER_TIMEOUT = 3000;
