@@ -37,3 +37,12 @@ Etc : Git, GitHub
 - [MDN toLocaleDateString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString)
 
 - [JavaScript 레퍼런스 toLocaleDateString()](<http://www.devdic.com/javascript/refer/native/method:1285/toLocaleDateString()>)
+
+**checkExecutionTime**
+
+- [MDN performance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now)
+
+**quick sort**
+
+- [Quick sort](https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html)
+
