@@ -5,7 +5,7 @@ const ResultField = ({ fieldName, value, excutionTime }) => {
     <Container>
       <FieldHeader>{fieldName}</FieldHeader>
       <TextArea value={value} readOnly />
-      {excutionTime && <p>{`${excutionTime.toPrecision(3)}ms`}</p>}
+      {excutionTime!==null &&( <div>{`${excutionTime.toPrecision(3)}ms`}</div>)}
     </Container>
   );
 };
