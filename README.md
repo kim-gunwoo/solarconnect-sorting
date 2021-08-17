@@ -2,7 +2,7 @@
 
 ## Deploy Link
 
-👉
+👉 https://kind-noether-048e49.netlify.app/
 
 ## Installation
 
@@ -45,4 +45,3 @@ Etc : Git, GitHub
 **quick sort**
 
 - [Quick sort](https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html)
-

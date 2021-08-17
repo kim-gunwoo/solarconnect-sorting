@@ -15,6 +15,7 @@ export const FieldHeader = styled.h3`
 
 export const TextArea = styled.textarea`
   width: 100%;
+  margin-bottom: 20px;
   height: 100px;
   border: none;
   resize: none;
