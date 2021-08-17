@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { LocaleDateTimer } from "components/Timer";
 import { Button } from "components/Button";
@@ -11,10 +11,10 @@ export default function App() {
   const [asceResult, setAsceResult] = useState("");
   const [descResult, setDescResult] = useState("");
 
-  const startSort = (inputString) => {
-    const numberArray = convertStringToNumberArray(inputString);
+  const startSort = () => {
+    const numberArray = convertStringToNumberArray(input);
     const asceSortedArray = quickSort(numberArray).join(", ");
-    const descSortedArray = quickSort(numberArray).join(", ");
+    const descSortedArray = quickSort(numberArray, true).join(", ");
     setAsceResult(asceSortedArray);
 
     setTimeout(() => {
@@ -26,20 +26,12 @@ export default function App() {
     setInput(e.target.value);
   };
 
-  // useEffect(() => {
-  //   // if (asceResult) {
-  //   //   setTimeout(() => {
-  //   //     setDescResult(quickSort(numberArray, true).join(", "));
-  //   //   }, 3000);
-  //   // }
-  // }, [asceResult, numberArray]);
-
   return (
     <Container>
       <LocaleDateTimer />
       <InputField fieldName='입력' value={input} onChange={inputFieldChange} />
       <Wrapper>
-        <Button onClick={() => startSort(input)}>sort</Button>
+        <Button onClick={startSort}>sort</Button>
       </Wrapper>
       <ResultField fieldName='오름차순' value={asceResult} />
       <ResultField fieldName='내림차순' value={descResult} />
