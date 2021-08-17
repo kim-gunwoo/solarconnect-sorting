@@ -3,55 +3,47 @@ import styled from "styled-components";
 import { LocaleDateTimer } from "components/Timer";
 import { Button } from "components/Button";
 import { InputField, ResultField } from "components/Field";
-import { quickSort } from "utils/common";
+import { quickSort, convertStringToNumberArray } from "utils/common";
+import { DESC_RENDER_TIMEOUT } from "utils/constants";
 
 export default function App() {
   const [input, setInput] = useState("");
-  const [numberArray, setNumberArray] = useState([]);
   const [asceResult, setAsceResult] = useState("");
   const [descResult, setDescResult] = useState("");
 
-  const toNumber = (input) => {
-    return Number(input);
-  };
+  const startSort = (inputString) => {
+    const numberArray = convertStringToNumberArray(inputString);
+    const asceSortedArray = quickSort(numberArray).join(", ");
+    const descSortedArray = quickSort(numberArray).join(", ");
+    setAsceResult(asceSortedArray);
 
-  const filterNaN = (item) => {
-    return !isNaN(item);
-  };
-
-  const startSort = (array) => {
-    const newNumberArray = array
-      .split(",")
-      .filter((e) => e !== "")
-      .map(toNumber)
-      .filter(filterNaN);
-
-    setNumberArray(newNumberArray);
-    setAsceResult(quickSort(newNumberArray).join(", "));
+    setTimeout(() => {
+      setDescResult(descSortedArray);
+    }, DESC_RENDER_TIMEOUT);
   };
 
   const inputFieldChange = (e) => {
     setInput(e.target.value);
   };
 
-  useEffect(() => {
-    if (asceResult) {
-      setTimeout(() => {
-        setDescResult(quickSort(numberArray, true).join(", "));
-      }, 3000);
-    }
-  }, [asceResult, numberArray]);
+  // useEffect(() => {
+  //   // if (asceResult) {
+  //   //   setTimeout(() => {
+  //   //     setDescResult(quickSort(numberArray, true).join(", "));
+  //   //   }, 3000);
+  //   // }
+  // }, [asceResult, numberArray]);
 
   return (
     <Container>
       <LocaleDateTimer />
-      <InputField fieldName="입력" value={input} onChange={inputFieldChange} />
+      <InputField fieldName='입력' value={input} onChange={inputFieldChange} />
       <Wrapper>
         <Button onClick={() => startSort(input)}>sort</Button>
       </Wrapper>
-      <ResultField fieldName="오름차순" value={asceResult} />
-      <ResultField fieldName="내림차순" value={descResult} />
-      <LocaleDateTimer locales="en-US" />
+      <ResultField fieldName='오름차순' value={asceResult} />
+      <ResultField fieldName='내림차순' value={descResult} />
+      <LocaleDateTimer locales='en-US' />
     </Container>
   );
 }
