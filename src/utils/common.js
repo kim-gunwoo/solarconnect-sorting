@@ -27,14 +27,13 @@ export const reverseSort = (nums) => {
   return reverse;
 };
 
-
 export const quickSort = (array, isDesc = false) => {
-  if (array.length < 2) {
-    return array;
-  }
+  if (array.length < 2) return array;
+
   const pivot = array[0];
   const small = [];
   const big = [];
+
   for (let i = 1; i < array.length; i++) {
     if (array[i] <= pivot) {
       small.push(array[i]);
@@ -42,12 +41,10 @@ export const quickSort = (array, isDesc = false) => {
       big.push(array[i]);
     }
   }
-  console.log(`small: ${small}, pivot: ${pivot}, big: ${big}`);
+
   if (isDesc) return quickSort(big, true).concat(pivot, quickSort(small, true));
   return quickSort(small).concat(pivot, quickSort(big));
 };
-
-
 
 const toNumber = (input) => {
   return Number(input);
