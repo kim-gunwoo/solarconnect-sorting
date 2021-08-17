@@ -2,7 +2,7 @@
 
 ## Deploy Link
 
-👉 https://kind-noether-048e49.netlify.app/
+👉 https://admiring-booth-902c12.netlify.app
 
 ## Installation
 
